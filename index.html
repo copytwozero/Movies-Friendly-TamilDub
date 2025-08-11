@@ -1,0 +1,770 @@
+<html>
+ <head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Movies Friendly</title> 
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&amp;display=swap" rel="stylesheet"> 
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  body {
+    background: linear-gradient(to right, #ffffff, #ffffff, #ffffff);
+    color: #ffecec;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+      
+/* Navigation Buttons */
+.language-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 10px 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+.nav-btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.nav-btn:hover {
+  background-color: #ffffff;
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Button Colors */
+.home {
+  background-color: #4CAF50;
+  color: #000000;
+}
+.telugu {
+  background-color: #ff0000;
+  color: #000000;
+}
+.tamil {
+  background-color: #fbff00;
+  color: #000;
+}
+.english {
+  background-color: #4CAF50;
+  color: #000000;
+}
+.languages {
+  background-color: #fbff00;
+  color: #000000;
+  
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: 50%; /* Horizontal center */
+  transform: translateX(-50%); /* Center align */
+  background-color: #4CAF50;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: rgb(0, 0, 0);
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: center; /* text also center */
+}
+
+.dropdown-content a:hover {
+  background-color: #ffffff;
+}
+
+    
+/* Social Icons */
+.social-links {
+  margin-top: 10px;
+}
+
+.social-links a img {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px;
+  vertical-align: middle;
+  transition: transform 0.2s;
+}
+
+.social-links a img:hover {
+  transform: scale(1.2);
+}
+
+    /* Header, Nav, Footer */
+header, nav, footer {
+  background: #ffffff;
+  color: #4CAF50;
+  text-align: center;
+  padding: 15px;
+}
+
+header { grid-area: header; }
+nav    { grid-area: nav; }
+footer { grid-area: footer; }
+
+
+   header {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(to right, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+  .site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.2rem;
+  border-bottom: 2px solid #ffffff;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+
+.site-header h1 {
+  font-size: 2rem;
+  color: #4CAF50;
+  border-left: 4px solid #ffffff;
+  padding-left: 12px;
+  margin: 0;
+  flex: 1;
+  word-break: break-word;
+  white-space: normal; /* allow wrap */
+}
+
+.telegram-center-wrapper {
+  flex-shrink: 0; /* prevent shrinking */
+}
+
+
+  #backButton {
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.3s;
+  }
+
+  #backButton:hover {
+    background-color: #4CAF50;
+  }
+
+  .telegram-center-wrapper {
+    display: block;
+    margin-top: 0;
+  }
+
+  .telegram-glow-btn {
+    display: inline-block;
+    padding: 4px;
+    border-radius: 50%;
+    background: transparent;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgb(255, 255, 255), 0 0 60px rgba(0, 136, 204, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.4s ease;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .telegram-icon {
+    width: 50px;
+    height: 50px;
+    display: block;
+  }
+
+  #content {
+    width: 100%;
+    max-width: 800px;
+    
+  }
+
+  .movie-item,
+  .category-item {
+    padding: 1px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: background 0.3s;
+    background: rgb(255, 255, 255);
+    margin-bottom: 15px;
+  }
+
+  .movie-item:hover,
+  .category-item:hover {
+    background: rgb(255, 255, 255)
+  }
+
+  .movie-item img {
+    width: 30px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .movie-info {
+    flex: 1;
+  }
+
+  .movie-info a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .movie-info a:hover {
+    text-decoration: underline;
+   color: rgb(0, 0, 0); /* color on hover */
+ }
+
+  .pagination {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .pagination a,
+  .pagination span {
+    margin: 0 6px;
+    color: #ffcc00;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .pagination a:hover {
+    text-decoration: underline;
+  }
+
+  .pagination .pagination_current {
+    color: #fff;
+  }
+
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+  }
+
+  .spinner {
+  width: 40px;
+  height: 40px;
+  border-top: 5px solid red;      /* top */
+  border-right: 5px solid green;  /* right */
+  border-bottom: 5px solid rgb(255, 238, 0);  /* bottom */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  .error {
+    color: #ff6666;
+    text-align: center;
+    padding: 20px;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .site-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .site-header h1 {
+      font-size: 1.5rem;
+    }
+
+   .movie-item,
+.category-item {
+  flex-direction: column;
+  align-items: center;   /* ⬅️ centers horizontally */
+  justify-content: center; /* ⬅️ centers vertically if needed */
+  text-align: center;    /* ⬅️ centers text content */
+}
+
+
+    .movie-item img {
+      width: 30%;
+    
+    }
+
+    #backButton {
+      width: 40%;
+      margin-top: 10px;
+    }
+    
+
+    .telegram-icon {
+      width: 35px;
+      height: 35px;
+    }
+
+    .pagination {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 20px 10px;
+    }
+
+    .site-header {
+      padding: 1rem;
+    }
+
+    .movie-info a {
+      font-size: 0.95rem;
+    }
+
+    .loading-text {
+      font-size: 12px;
+    }
+  }
+
+  .telegram-glow-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(0, 198, 255, 0.5) 20%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    animation: pulse-wave-glow 2s infinite ease-out;
+    box-shadow: 0 0 30px rgba(0, 198, 255, 0.7), 0 0 60px rgba(0, 198, 255, 0.5);
+    filter: blur(2px);
+    z-index: -1;
+  }
+
+  @keyframes pulse-wave-glow {
+    0% {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.6);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(2.2);
+      opacity: 0;
+    }
+  }
+</style> 
+ </head>
+ <body> 
+  <center>
+  <br>
+   <a href="index.html" class="nav-btn home"> Movies Friendly </a>
+  <br>
+  <br> 
+  <a class="nav-btn ENGLISH" onclick="window.location.href='https://moviesfriendly-tamil.netlify.app';"> Tamil Movies </a> 
+  <br> 
+  <nav class="language-nav">
+        <a href="index.html" class="nav-btn telugu">@</a>
+        <a href="#" target="_blank" class="nav-btn tamil">TamilDub</a>
+        <a href="#" target="_blank" class="nav-btn home">@</a>
+      </nav> 
+   
+  <br> 
+  <div id="content" class="loading" style="color:#4CAF50;"> 
+   <div class="category-item"> 
+    <div class="movie-info"> 
+     <a href="#" onclick="loadPage('/tamil-2025-dubbed-movies/'); return false;"> Tamil 2025 Dubbed Movies </a> 
+     
+     <a href="#" onclick="loadPage('/tamil-2024-dubbed-movies/'); return false;"> Tamil 2024 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2023-dubbed-movies/'); return false;"> Tamil 2023 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2022-dubbed-movies/'); return false;"> Tamil 2022 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2021-dubbed-movies/'); return false;"> Tamil 2021 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2020-dubbed-movies/'); return false;"> Tamil 2020 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2019-dubbed-movies/'); return false;"> Tamil 2019 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2018-dubbed-movies/'); return false;"> Tamil 2018 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2017-dubbed-movies/'); return false;"> Tamil 2017 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2016-dubbed-movies/'); return false;"> Tamil 2016 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2015-dubbed-movies/'); return false;"> Tamil 2015 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2014-dubbed-movies/'); return false;"> Tamil 2014 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2013-dubbed-movies/'); return false;"> Tamil 2013 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2012-dubbed-movies/'); return false;"> Tamil 2012 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2011-dubbed-movies/'); return false;"> Tamil 2011 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2010-dubbed-movies/'); return false;"> Tamil 2010 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2009-dubbed-movies/'); return false;"> Tamil 2009 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2008-dubbed-movies/'); return false;"> Tamil 2008 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2007-dubbed-movies/'); return false;"> Tamil 2007 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2006-dubbed-movies/'); return false;"> Tamil 2006 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2005-dubbed-movies/'); return false;"> Tamil 2005 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2004-dubbed-movies/'); return false;"> Tamil 2004 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-2003-dubbed-movies/'); return false;"> Tamil 2003 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2002-dubbed-movies/'); return false;"> Tamil 2002 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2001-dubbed-movies/'); return false;"> Tamil 2001 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-2000-dubbed-movies/'); return false;"> Tamil 2000 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1999-dubbed-movies/'); return false;"> Tamil 1999 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-1998-dubbed-movies/'); return false;"> Tamil 1998 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-1997-dubbed-movies/'); return false;"> Tamil 1997 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-1996-dubbed-movies/'); return false;"> Tamil 1996 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-1995-dubbed-movies/'); return false;"> Tamil 1995 Dubbed Movies </a> 
+ 
+     <a href="#" onclick="loadPage('/tamil-1994-dubbed-movies/'); return false;"> Tamil 1994 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1993-dubbed-movies/'); return false;"> Tamil 1993 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1992-dubbed-movies/'); return false;"> Tamil 1992 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1991-dubbed-movies/'); return false;"> Tamil 1991 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1990-dubbed-movies/'); return false;"> Tamil 1990 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1989-dubbed-movies/'); return false;"> Tamil 1989 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1988-dubbed-movies/'); return false;"> Tamil 1988 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1987-dubbed-movies/'); return false;"> Tamil 1987 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1986-dubbed-movies/'); return false;"> Tamil 1986 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1985-dubbed-movies/'); return false;"> Tamil 1985 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1984-dubbed-movies/'); return false;"> Tamil 1984 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1983-dubbed-movies/'); return false;"> Tamil 1983 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1982-dubbed-movies/'); return false;"> Tamil 1982 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1981-dubbed-movies/'); return false;"> Tamil 1981 Dubbed Movies </a> 
+
+     <a href="#" onclick="loadPage('/tamil-1980-dubbed-movies/'); return false;"> Tamil 1980 Dubbed Movies </a> 
+    
+     
+    </div> 
+   </div> 
+  </div> 
+  <br>
+   <button id="backButton" onclick="goBack()">← Back</button>
+  <br>
+  </center>
+  <!-- Popup --> 
+  <div id="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000b3; z-index:9999; justify-content:center; align-items:center;"> 
+   <div style="background:white; padding:20px; border-radius:8px; text-align:center;"> 
+    <p style="margin-bottom:15px; color: #4CAF50; !important;">இப்போது புதிய தளத்திற்கு செல்லப்படுவீர்கள். அதில் 5 வினாடிகள் காத்திருக்கவும், உங்கள் படம் தானாகவே பதிவிறக்கம் செய்யப்படும்.</p> 
+    <button onclick="confirmRedirect()" style="padding:10px 20px; background:#4CAF50; color:white; border:none; border-radius:5px;">OK</button> 
+   </div> 
+  </div> 
+  <br> 
+  <script>
+const pageHistory = [];
+const baseUrl = "https://isaidub.city";
+let actualDownloadUrl = "";
+
+// Function to load any page
+async function loadPage(relativePath, isBack = false, retryCount = 3) {
+  const container = document.getElementById("content");
+
+  // History management
+  if (!isBack && (pageHistory.length === 0 || pageHistory[pageHistory.length - 1] !== relativePath)) {
+    pageHistory.push(relativePath);
+  }
+
+  container.innerHTML = `
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <p class="loading-text"> </p>
+    </div>
+  `;
+
+  const match = relativePath.match(/\/download\/page\/(\d+)\/?$/);
+  let fullUrl = match
+    ? `https://dubmv.top/download/file/${match[1]}`
+    : baseUrl + relativePath;
+
+  const apiUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent(fullUrl);
+
+  for (let attempt = 1; attempt <= retryCount; attempt++) {
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error("Network response not OK");
+      const data = await response.json();
+      const html = data.contents;
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      // ✅ Final download page
+      if (match) {
+        const downloadSection = doc.querySelector("div.download");
+        let downloadHTML = `<div class="category-item"><strong>Download Links</strong><br><br>`;
+
+        if (downloadSection) {
+          const downloadLinks = downloadSection.querySelectorAll("a[href]");
+          downloadLinks.forEach(a => {
+            const text = a.textContent.toLowerCase();
+            const href = a.getAttribute("href");
+            if (text.includes("watch online") || !href) return;
+
+            // 👇 Custom link to trigger popup logic
+            downloadHTML += `<div>
+              <a href="#" onclick="handleFinalDownload('${href}'); return false;" style="color:lime">
+                ${a.textContent.replace(/isaiDub\.me/gi, "MoviesAroDub")}
+              </a>
+            </div>`;
+          });
+        }
+
+        downloadHTML += `</div>`;
+        container.innerHTML = downloadHTML;
+        return;
+      }
+
+      // ✅ Category or list page
+      const fDivs = doc.querySelectorAll("div.f");
+      let contentHTML = "";
+
+      fDivs.forEach(div => {
+        const table = div.querySelector("table");
+        if (table) {
+          const img = table.querySelector("img");
+          const anchor = table.querySelector("a");
+          const sizeMatch = table.innerText.match(/Size\s*:\s*([0-9.]+ [A-Z]+)?/);
+          const size = sizeMatch ? sizeMatch[0] : "";
+
+          contentHTML += `
+            <div class="movie-item">
+              <img src="https://isaidub.city${img.getAttribute("src")}" alt="${img.getAttribute("alt")}">
+              <div class="movie-info">
+                <a href="#" onclick="loadPage('${anchor.getAttribute("href")}'); return false;">
+                  ${anchor.textContent.replace(/isaiDub\.me/gi, "MoviesAroDub")}
+                </a><br>
+                <small>${size}</small>
+              </div>
+            </div>
+          `;
+        } else {
+          const aTag = div.querySelector("a");
+          if (aTag) {
+            contentHTML += `
+              <div class="category-item">
+                <div class="movie-info">
+                  <a href="#" onclick="loadPage('${aTag.getAttribute("href")}'); return false;">
+                    ${aTag.innerHTML}
+                  </a>
+                </div>
+              </div>
+            `;
+          }
+        }
+      });
+
+      // ✅ Pagination
+      const paginationDiv = doc.querySelector("div.isaiminida");
+      let paginationHTML = "";
+      if (paginationDiv) {
+        paginationHTML = `<div class="pagination">Pages: `;
+        paginationDiv.querySelectorAll("span, a").forEach(item => {
+          if (item.tagName === "SPAN") {
+            paginationHTML += `<span class="pagination_current">${item.textContent}</span>`;
+          } else {
+            const href = item.getAttribute("href");
+            paginationHTML += ` <a href="#" onclick="loadPage('${href}'); return false;">${item.textContent}</a>`;
+          }
+        });
+        paginationHTML += `</div>`;
+      }
+
+      container.innerHTML = contentHTML + paginationHTML;
+      return;
+    } catch (e) {
+      console.warn(`Attempt ${attempt} failed: ${e.message}`);
+      if (attempt === retryCount) {
+        container.innerHTML = `<p class="error">Failed to load content after ${retryCount} attempts.</p>`;
+      }
+    }
+  }
+}
+
+// Go back function
+function goBack() {
+  if (pageHistory.length > 1) {
+    pageHistory.pop();
+    const previous = pageHistory.pop();
+    loadPage(previous, true);
+  } else {
+    window.location.href = 'https://moviesaro.netlify.app';
+  }
+}
+
+// ✅ Handle final download click
+function handleFinalDownload(downloadUrl) {
+  actualDownloadUrl = downloadUrl;
+  document.getElementById("popup").style.display = "flex";
+}
+
+// ✅ OK button logic
+function confirmRedirect() {
+  document.getElementById("popup").style.display = "none";
+  window.open("https://otieu.com/4/9535254", "_blank");
+  setTimeout(() => {
+    window.location.href = actualDownloadUrl;
+  }, 5000);
+}
+
+// ✅ Initial page load
+loadPage("/tamil-yearly-dubbed-movies/");
+</script> 
+  <script>
+    // Disable right-click
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
+
+
+
+  <script type="module">
+  // Import Firebase core + database
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-analytics.js";
+  import { getDatabase, ref, set, onDisconnect, onValue } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-database.js";
+
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyCnFzRuiePFLp7rHV9ITXFl7XSPb-PAydI",
+    authDomain: "moviesaro.firebaseapp.com",
+    databaseURL: "https://moviesaro-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "moviesaro",
+    storageBucket: "moviesaro.appspot.com", // corrected domain
+    messagingSenderId: "988768227464",
+    appId: "1:988768227464:web:2afbfc7f6f000d4f610f3d",
+    measurementId: "G-CDJZBSR54T"
+  };
+
+  // Init Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getDatabase(app);
+
+  // Create random user ID for this session
+  const userId = Math.random().toString(36).substring(2);
+  const userRef = ref(db, 'onlineUsers/' + userId);
+
+  // Mark user online
+  set(userRef, true);
+
+  // Auto-remove on disconnect
+  onDisconnect(userRef).remove();
+
+  // Live count display
+  const countRef = ref(db, 'onlineUsers');
+  onValue(countRef, (snapshot) => {
+    const count = snapshot.size || snapshot.numChildren();
+    document.getElementById('userCount').textContent = count;
+  });
+</script> 
+  
+  <footer>
+     <div class="dropdown">
+        <a href="#" class="nav-btn home"> START </a>
+        <div class="dropdown-content">
+          <a href="telugu2025.html" class="nav-btn telugu">Contact Us</a>
+          <a href="tamil2025.html" class="nav-btn tamil">DMCA</a>
+          <a href="english2025.html" class="nav-btn HOME">HOME</a>
+      
+        </div>
+      </Div>
+      <br>
+    <div class="social-links">
+         © 2025Movies Friendly. All rights reserved.
+        <a href="#" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+        </a>
+        <a href="#" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+        </a>
+        <a href="#" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram">
+        </a>
+      </div>
+  
+  </footer> 
+  </body> 
+</html>
